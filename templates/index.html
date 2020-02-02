@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 <body>
@@ -26,14 +27,24 @@
       <div class="col s12">
           <a class="btn-large" onclick="uyar()" ontouch="uyar()">UY -> AR + 30%</a>
           <a class="btn-large" onclick="aruy()">AR -> UY + 30%</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
           <a class="btn-large" onclick="uyusd()">UY->USD</a>
           <a class="btn-large" onclick="arusd()">AR->USD</a>
           <a class="btn-large" onclick="usdar()">USD->AR</a>
       </div>
     </div>
 
+
+
     <p>BCRA: {{ data.ar }}</p>
     <p>BROU: {{ data.uy }}</p>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
 
 class Calc {
