@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+    <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Placeholder" id="monto" type="number" class="validate">
+              <label for="monto">Monto:</label>
+            </div>
+          </div>
+        </form>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+          <a class="btn-large" onclick="uyar()">UY -> AR + 30%</a>
+          <a class="btn-large" onclick="aruy()">AR -> UY + 30%</a>
+          <a class="btn-large" onclick="uyusd()">UY->USD</a>
+          <a class="btn-large" onclick="arusd()">AR->USD</a>
+          <a class="btn-large" onclick="usdar()">USD->AR</a>
+      </div>
+    </div>
+
+    <p>BCRA: {{ data.ar }}</p>
+    <p>BROU: {{ data.uy }}</p>
+<script>
+
+class Calc {
+  constructor() {
+    this.usd_ar = {{ data.ar }}
+    this.usd_uy = {{ data.uy }}
+  }
+  uy2ar(uy, tax=0.3 ) {
+    let usds = uy / this.usd_uy
+    let ar = usds * this.usd_ar + (usds * this.usd_ar * tax)
+    return ar
+  }
+
+  ar2uy(ar, tax=0.3 ) {
+    let usds = (ar / this.usd_ar)
+    let uy = usds * this.usd_uy + (usds / this.usd_ar * tax)
+    return uy
+  }
+
+  ur2usd(uy, tax=0) {
+    let usds = uy / this.usd_uy
+    return usds
+  }
+
+}
+
+let c = new Calc()
+function uyar() {
+    let uy = document.getElementById("monto").value
+    document.getElementById("monto").value = c.uy2ar(uy)
+}
+
+
+</script>
+</body>
+</html>
