@@ -18,8 +18,8 @@ class Currencies(Flask):
 
     def get_data(self):
         try:
-            self.usd_ar = self.r.get("USDAR")
-            self.usd_uy = self.r.get("USDUY")
+            self.usd_ar = float(self.r.get("USDAR").decode())
+            self.usd_uy = float(self.r.get("USDUY").decode())
         except TypeError:
             self.usd_uy = self.usd_ar = None
 
