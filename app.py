@@ -39,9 +39,10 @@ app = Currencies(__name__)
 
 
 @app.route('/')
-def hello_world():
+def index():
     data = app.get_data()
     return render_template("index.html", data=data)
+
 
 def main():
     app.run(host="0.0.0.0", port=5001, debug=True)
