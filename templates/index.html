@@ -15,10 +15,12 @@
     <div class="row">
         <form class="col s12">
           <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s11">
               <input placeholder="Placeholder" id="monto" type="number" class="validate">
               <label for="monto">Monto:</label>
+
             </div>
+             <a class="btn-large red" onclick="uyar()" ontouch="clear()"> C </a>
           </div>
         </form>
     </div>
@@ -26,7 +28,7 @@
     <div class="row">
       <div class="col s12">
           <a class="btn-large" onclick="uyar()" ontouch="uyar()">UY -> AR + 30%</a>
-          <a class="btn-large" onclick="aruy()">AR -> UY + 30%</a>
+          <a class="btn-large" onclick="aruy()" ontouch="aruy()">AR -> UY + 30%</a>
       </div>
     </div>
 
@@ -72,11 +74,20 @@ class Calc {
 }
 
 let c = new Calc()
+
+function clear() {
+    document.getElementById("monto").value = ""
+}
+
 function uyar() {
     let uy = document.getElementById("monto").value
     document.getElementById("monto").value = c.uy2ar(uy)
 }
 
+function aruy() {
+    let uy = document.getElementById("monto").value
+    document.getElementById("monto").value = c.ar2uy(uy)
+}
 
 </script>
 </body>
