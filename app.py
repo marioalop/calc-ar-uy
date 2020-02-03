@@ -3,6 +3,7 @@ import os
 import urllib.parse as urlparse
 from calc import get_usd_uy, get_usd_ar
 import redis
+from datetime import datetime, timedelta
 
 
 class Currencies(Flask):
@@ -15,11 +16,14 @@ class Currencies(Flask):
             self.r = None
         self.usd_uy = None
         self.usd_ar = None
+        self.last_update = ""
 
     def get_data(self):
         try:
             self.usd_ar = float(self.r.get("USDAR").decode())
             self.usd_uy = float(self.r.get("USDUY").decode())
+            self.last_update = self.r.get("UPDATE").decode()
+
         except TypeError:
             self.usd_uy = self.usd_ar = None
         except AttributeError:
@@ -28,13 +32,15 @@ class Currencies(Flask):
         if not self.usd_ar or not self.usd_uy:
             self.usd_ar = get_usd_ar()
             self.usd_uy = get_usd_uy()
+            self.last_update = str(datetime.now() + timedelta(hours=3))
             try:
                 self.r.set("USDAR", self.usd_ar, 60*60*2)
                 self.r.set("USDUY", self.usd_uy, 60*60*2)
+                self.r.set("UPDATE", self.last_update, 60 * 60 * 2)
             except TypeError:
                 pass
 
-        return {"ar": self.usd_ar, "uy": self.usd_uy}
+        return {"ar": self.usd_ar, "uy": self.usd_uy, "update": self.last_update}
 
 
 app = Currencies(__name__)
