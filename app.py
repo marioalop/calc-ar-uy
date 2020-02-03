@@ -40,7 +40,7 @@ class Currencies(Flask):
             except TypeError:
                 pass
 
-        return {"ar": self.usd_ar, "uy": self.usd_uy, "update": self.last_update}
+        return {"ar": self.usd_ar, "uy": self.usd_uy, "updated": self.last_update}
 
 
 app = Currencies(__name__)
