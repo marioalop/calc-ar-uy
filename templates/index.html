@@ -23,7 +23,7 @@
 
           </div>
         </form>
-        <a class="btn-large red" onclick="clear()" ontouch="clear()"> C </a>
+        <a class="btn-large red" onclick="delete()" ontouch="delete()"> C </a>
     </div>
 
     <div class="row">
@@ -77,7 +77,7 @@ class Calc {
 
 let c = new Calc()
 
-function clear() {
+function delete() {
     console.log("clear")
     document.getElementById("monto").value = null
 }
