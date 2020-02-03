@@ -20,7 +20,9 @@ class Currencies(Flask):
         try:
             self.usd_ar = float(self.r.get("USDAR").decode())
             self.usd_uy = float(self.r.get("USDUY").decode())
-        except TypeError or AttributeError:
+        except TypeError:
+            self.usd_uy = self.usd_ar = None
+        except AttributeError:
             self.usd_uy = self.usd_ar = None
 
         if not self.usd_ar or not self.usd_uy:
