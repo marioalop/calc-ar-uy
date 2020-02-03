@@ -32,7 +32,7 @@ class Currencies(Flask):
         if not self.usd_ar or not self.usd_uy:
             self.usd_ar = get_usd_ar()
             self.usd_uy = get_usd_uy()
-            self.last_update = str(datetime.now() + timedelta(hours=3))
+            self.last_update = str(datetime.now() - timedelta(hours=3))
             try:
                 self.r.set("USDAR", self.usd_ar, 60*60*2)
                 self.r.set("USDUY", self.usd_uy, 60*60*2)
